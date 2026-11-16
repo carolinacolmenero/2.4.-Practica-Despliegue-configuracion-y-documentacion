@@ -62,8 +62,20 @@ Hemos realizado la instalación de Ubuntu configurando los siguientes elementos:
 
 **Contraseña:** 
 
-Se ha establecido una contraseña segura.
-    No se incluye en esta documentación por seguridad.
+Se ha establecido una contraseña segura. No se incluye en esta documentación por seguridad.
 
+---
+
+### 3. Optimización e Integración
+
+Finalizada la instalación de Ubuntu, instalamos las **Guest Additions** de VirtualBox para conseguir una comunicación real entre la máquina virtual y el sistema anfitrión.
+
+**Configuraciones e integraciones verificadas:**
+
+- Instalamos las utilidades de VirtualBox, comprobando con \`lsmod | grep vbox\` que el módulo \`vboxguest\` se cargó correctamente.
+ - Activamos el ajuste dinámico de pantalla para adaptar la resolución automáticamente al redimensionar la ventana. 
+ - Habilitamos la función de copiar y pegar (portapapeles bidireccional) entre ambos sistemas.
+
+![Instalación de las Guest Additions](img/guestAdditions.png)
 
 ---
