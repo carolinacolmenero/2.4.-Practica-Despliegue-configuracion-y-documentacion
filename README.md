@@ -79,3 +79,15 @@ Finalizada la instalación de Ubuntu, instalamos las **Guest Additions** de Virt
 ![Instalación de las Guest Additions](img/guestAdditions.png)
 
 ---
+
+### 4. Carpeta Compartida
+
+Configuramos una carpeta compartida para intercambiar archivos rápidamente entre Windows y Ubuntu.
+
+- **Ruta de origen en el host:** Seleccionamos la carpeta `carpeta compartida`, ubicada en el Escritorio de Windows.
+- **Punto de montaje en el invitado:** Montamos la carpeta en el directorio `/media/sf_carpeta_compartida` de Ubuntu.
+- **Comprobación de funcionamiento:** Verificamos el acceso creando y leyendo la subcarpeta `La carpeta se compartio`, visible desde el explorador Nautilus de Ubuntu, la terminal y Windows.
+
+![Configuración y comprobación de la carpeta compartida](img/carpetaCompartida.png)
+
+---
