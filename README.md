@@ -1,6 +1,6 @@
 # 2.4.-Practica-Despliegue-configuracion-y-documentacion
 
-Guía práctica sobre el despliegue de Ubuntu en VirtualBox, que abarca desde la planificación e instalación inicial del sistema hasta la gestión de almacenamiento con particionamiento GPT Y sus tareas de mantenimiento
+Guía práctica sobre el despliegue de Ubuntu en VirtualBox, que abarca desde la planificación e instalación inicial del sistema hasta la gestión de almacenamiento con particionamiento GPT y sus tareas de mantenimiento.
 
 ## BLOQUE 1: Despliegue y Optimización del Entorno
 
@@ -40,4 +40,30 @@ AL elegir la **reserva dinámica**, el disco virtual solo ocupa en el almacenami
 
 ---
 
+### 2. Instalación Limpia
 
+Hemos realizado la instalación de Ubuntu configurando los siguientes elementos:
+
+
+**Nombre de usuario:** 
+
+![Nombre de usuario](img/nombreUsuario.png)
+
+
+**Idioma:** Español
+
+![Idioma](img/idioma.png)
+
+
+**Distribución del teclado:** Español 
+
+![Distribución del teclado](img/distribucion.png)
+
+
+**Contraseña:** 
+
+Se ha establecido una contraseña segura.
+    No se incluye en esta documentación por seguridad.
+
+
+---
