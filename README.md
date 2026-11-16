@@ -115,8 +115,23 @@ Abrimos la herramienta **GParted** en Ubuntu para inicializar y particionar el n
 1. **Partición `/dev/sdb1`:** Volumen de **5.12 GiB** formateado con el sistema de archivos **ext4**.
 2. **Partición `/dev/sdb2`:** Volumen de **4.88 GiB** formateado en **fat32**.
 
+> **Nota:** Nosotros durante la configuración inicial tuvimos problemas y dividimos el disco en tres particiones. Y luego lo arreglamos reorganizando el disco para trabajar con las dos particiones previstas.
+
 ![Particionamiento inicial con GParted](img/particionamiento.png)
 
 ![Formateo de partición en fat32 y ext4](img/formateoParticion.png)
+
+---
+
+### 3. Redimensionado y Modificación de Particiones
+
+Modificamos la estructura del disco ajustando la capacidad de la segunda partición desde la herramienta de redimensionado de GParted.
+
+- Redujimos la partición `/dev/sdb2` (fat32), que quedó con un tamaño de **2.93 GiB**. En el asistente de GParted, el tamaño máximo indicado era de **4999 MiB**.
+- Tras aplicar los cambios, quedó un espacio sin asignar de **1.95 GiB** disponible para futuros usos.
+
+![Asistente de redimensionado de partición en GParted](img/redimensionado.png)
+
+![Estado final del particionado con espacio sin asignar](img/particionadoFinal.png)
 
 ---
