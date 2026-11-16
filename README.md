@@ -1,80 +1,67 @@
 # 2.4.-Practica-Despliegue-configuracion-y-documentacion
 
-Guía práctica sobre el despliegue de Ubuntu en VirtualBox, que abarca desde la planificación e instalación inicial del sistema hasta la gestión de almacenamiento con particionamiento GPT y sus tareas de mantenimiento.
+En esta práctica instalamos Ubuntu en VirtualBox y gestionamos discos, particiones GPT y actualizaciones.
 
 ## BLOQUE 1: Despliegue y Optimización del Entorno
 
 ### 1. Planificación y Asignación de Recursos
 
-Antes de inicializar la máquina virtual, hacemos un análisis detallado de los componentes de hardware del equipo anfitrión para distribuir los recursos de manera eficiente.
+Antes de crear la máquina virtual, revisamos el equipo anfitrión para repartir sus recursos.
 
-**Recursos disponibles en el equipo anfitrión (*Host*):**
-- **Sistema Operativo:** Microsoft Windows 11 Pro
-- **Procesador:** 11th Gen Intel® Core™ i5-11400 @ 2.60 GHz (dispone de 6 núcleos físicos y 12 hilos)
-- **Memoria RAM:** 16,0 GB instalados en el sistema
-- **Placa base:** Gigabyte Technology Co., Ltd. H510M H
+**Recursos de nuestro equipo anfitrión (*Host*):**
+
+- **Sistema operativo:** Microsoft Windows 11 Pro.
+- **Procesador:** 11th Gen Intel® Core™ i5-11400 @ 2.60 GHz (6 núcleos físicos y 12 hilos).
+- **Memoria RAM:** 16,0 GB instalados (15,8 GB utilizables).
+- **Placa base:** Gigabyte Technology Co., Ltd. H510M H.
 
 ![Información del sistema anfitrión](img/recursos.png)
 
-**Justificación técnica del reparto de recursos:**
-- **Asignación de Memoria RAM (4 GB):** 
+**Justificación técnica de los recursos asignados:**
 
-Reservamos 4 GB de los 16 GB totales del anfitrión asegura usar la máquina virtual de forma fluida sin ralentizar Windows 11.
+- **Memoria RAM (4 GB):** Le asignamos 4 GB para que Ubuntu funcione con fluidez y quede memoria disponible para Windows.
 
-![RAM máquina cliente](img/ram.png)
+  ![Memoria RAM de la máquina virtual](img/ram.png)
 
-- **Asignación de Procesamiento (4 núcleos CPU):** 
+- **Procesamiento (4 núcleos CPU):** Asignamos 4 núcleos a la máquina virtual y dejamos 2 para Windows.
 
-Asignar 4 de los 6 núcleos físicos del procesador i5 aporta agilidad y capacidad multitarea a la máquina virtual, reservando 2 núcleos para la estabilidad del sistema principal.
+  ![Núcleos de la máquina virtual](img/nucleos.png)
 
-![Núcleos máquina cliente](img/nucleos.png)
+- **Almacenamiento (VDI dinámico de 50 GB):** Elegimos **VDI** con reserva dinámica. El archivo crece según el espacio que ocupa Ubuntu, hasta un máximo de 50 GB.
 
-- **Amacenamiento Secundario Dinámico (VDI):** 
-
-Para el disco principal de 50 GB seleccionamos el formato **VDI (VirtualBox Disk Image)** con reserva dinámica. 
-
-AL elegir la **reserva dinámica**, el disco virtual solo ocupa en el almacenamiento físico del equipo anfitrión el espacio que el sistema operativo invitado va utilizando realmente, sin reservar de golpe los 50 GB en blanco.
-
-![Screenshot disco dinámico](img/almacenamientoDinamico.png)
-
+  ![Disco virtual con reserva dinámica](img/almacenamientoDinamico.png)
 
 ---
 
 ### 2. Instalación Limpia
 
-Hemos realizado la instalación de Ubuntu configurando los siguientes elementos:
+Instalamos Ubuntu con estos datos:
 
+- **Usuario y equipo:** `vboxuser` y `Pratica-Tiozeio`.
 
-**Nombre de usuario:** 
+  ![Nombre de usuario y equipo](img/nombreUsuario.png)
 
-![Nombre de usuario](img/nombreUsuario.png)
+- **Idioma:** Español (España).
 
+  ![Idioma del sistema](img/idioma.png)
 
-**Idioma:** Español
+- **Distribución del teclado:** Español estándar.
 
-![Idioma](img/idioma.png)
+  ![Distribución del teclado](img/distribucion.png)
 
-
-**Distribución del teclado:** Español 
-
-![Distribución del teclado](img/distribucion.png)
-
-
-**Contraseña:** 
-
-Se ha establecido una contraseña segura. No se incluye en esta documentación por seguridad.
+- **Contraseña:** Configuramos una clave segura, que omitimos por seguridad.
 
 ---
 
 ### 3. Optimización e Integración
 
-Finalizada la instalación de Ubuntu, instalamos las **Guest Additions** de VirtualBox para conseguir una comunicación real entre la máquina virtual y el sistema anfitrión.
+Después de instalar Ubuntu, añadimos las Guest Additions de VirtualBox.
 
-**Configuraciones e integraciones verificadas:**
+- **Guest Additions:** Comprobamos en la terminal, mediante `lsmod | grep vbox`, que el módulo `vboxguest` se cargó correctamente.
+- **Resolución dinámica:** Activamos el ajuste automático de la resolución al cambiar el tamaño de la ventana.
+- **Portapapeles bidireccional:** Habilitamos el intercambio de texto entre el equipo anfitrión y la máquina virtual.
 
-- Instalamos las utilidades de VirtualBox, comprobando con \`lsmod | grep vbox\` que el módulo \`vboxguest\` se cargó correctamente.
- - Activamos el ajuste dinámico de pantalla para adaptar la resolución automáticamente al redimensionar la ventana. 
- - Habilitamos la función de copiar y pegar (portapapeles bidireccional) entre ambos sistemas.
+> **Registro de Incidencias (Troubleshooting):** No sabíamos instalar las Guest Additions, así que buscamos una guía en internet. Insertamos la imagen del CD desde **Dispositivos > Insertar imagen de CD de las Guest Additions**, ejecutamos el instalador y reiniciamos Ubuntu.
 
 ![Instalación de las Guest Additions](img/guestAdditions.png)
 
@@ -82,25 +69,26 @@ Finalizada la instalación de Ubuntu, instalamos las **Guest Additions** de Virt
 
 ### 4. Carpeta Compartida
 
-Configuramos una carpeta compartida para intercambiar archivos rápidamente entre Windows y Ubuntu.
+Creamos una carpeta compartida para intercambiar archivos entre Windows y Ubuntu.
 
-- **Ruta de origen en el host:** Seleccionamos la carpeta `carpeta compartida`, ubicada en el Escritorio de Windows.
-- **Punto de montaje en el invitado:** Montamos la carpeta en el directorio `/media/sf_carpeta_compartida` de Ubuntu.
-- **Comprobación de funcionamiento:** Verificamos el acceso creando y leyendo la subcarpeta `La carpeta se compartio`, visible desde el explorador Nautilus de Ubuntu, la terminal y Windows.
+- **Ruta de origen:** `carpeta compartida`, en el Escritorio de Windows.
+- **Punto de montaje:** `/media/sf_carpeta_compartida`.
+- **Comprobación:** Creamos y leímos `La carpeta se compartio`; comprobamos que aparecía en Nautilus, la terminal y Windows.
 
 ![Configuración y comprobación de la carpeta compartida](img/carpetaCompartida.png)
 
+---
 
 ## BLOQUE 2: Gestión de Almacenamiento, Particionamiento y Mantenimiento
 
 ### 1. Creación y Asignación de un Disco Duro Virtual Secundario
 
-Añadimos un segundo disco duro virtual a la máquina desde el selector de medios de VirtualBox.
+Añadimos un segundo disco desde el selector de medios de VirtualBox.
 
 - **Nombre del archivo:** `Pratica-Tiozeio_1.vhd`.
 - **Tamaño asignado:** **10,00 GB**.
 - **Formato de archivo:** **VHD (Virtual Hard Disk)** con reserva dinámica.
-- **Verificación:** Confirmamos en el administrador de discos que la unidad principal `Pratica-Tiozeio.vdi` de 50 GB se mantiene conectada (*Attached*) y que la nueva unidad de 10 GB quedó lista para utilizarse.
+- **Verificación:** El disco principal `Pratica-Tiozeio.vdi` (50 GB) seguía conectado y la nueva unidad estaba disponible.
 
 ![Creación del disco duro virtual VHD](img/discoVirtual.png)
 
@@ -110,28 +98,39 @@ Añadimos un segundo disco duro virtual a la máquina desde el selector de medio
 
 ### 2. Particionamiento GPT y Creación de Particiones
 
-Abrimos la herramienta **GParted** en Ubuntu para inicializar y particionar el nuevo disco, reconocido como `/dev/sdb` (10,00 GiB). Creamos dos particiones primarias en la unidad:
+En **GParted**, seleccionamos el nuevo disco (`/dev/sdb`, 10,00 GiB) y creamos dos particiones:
 
-1. **Partición `/dev/sdb1`:** Volumen de **5.12 GiB** formateado con el sistema de archivos **ext4**.
-2. **Partición `/dev/sdb2`:** Volumen de **4.88 GiB** formateado en **fat32**.
+1. **Partición `/dev/sdb1`:** **5.12 GiB**, formateada con el sistema de archivos **ext4**.
+2. **Partición `/dev/sdb2`:** **4.88 GiB**, formateada en **fat32**.
 
-> **Nota:** Nosotros durante la configuración inicial tuvimos problemas y dividimos el disco en tres particiones. Y luego lo arreglamos reorganizando el disco para trabajar con las dos particiones previstas.
+> **Registro de Incidencias (Troubleshooting):** Al principio dividimos el disco en tres particiones por error. Reorganizamos la unidad para dejar las dos particiones previstas.
 
 ![Particionamiento inicial con GParted](img/particionamiento.png)
 
-![Formateo de partición en fat32 y ext4](img/formateoParticion.png)
+![Formateo de las particiones en fat32 y ext4](img/formateoParticion.png)
 
 ---
 
 ### 3. Redimensionado y Modificación de Particiones
 
-Modificamos la estructura del disco ajustando la capacidad de la segunda partición desde la herramienta de redimensionado de GParted.
+Redimensionamos la segunda partición con GParted.
 
-- Redujimos la partición `/dev/sdb2` (fat32), que quedó con un tamaño de **2.93 GiB**. En el asistente de GParted, el tamaño máximo indicado era de **4999 MiB**.
-- Tras aplicar los cambios, quedó un espacio sin asignar de **1.95 GiB** disponible para futuros usos.
+- `/dev/sdb2` (fat32) quedó en **2.93 GiB**; GParted mostraba **4999 MiB** como tamaño máximo.
+- Quedaron **1.95 GiB** sin asignar.
 
 ![Asistente de redimensionado de partición en GParted](img/redimensionado.png)
 
 ![Estado final del particionado con espacio sin asignar](img/particionadoFinal.png)
 
 ---
+
+### 4. Mantenimiento y Actualización del Sistema
+
+Actualizamos el sistema con `apt`.
+
+1. **Comprobación:** Ejecutamos `apt list --upgradable` como superusuario y encontramos **37 paquetes** pendientes.
+2. **Actualización:** Ejecutamos `sudo apt upgrade -y`.
+
+![Comprobación de paquetes actualizables en la terminal](img/comprobacion.png)
+
+![Ejecución del comando apt upgrade](img/update.png)
