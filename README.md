@@ -90,4 +90,20 @@ Configuramos una carpeta compartida para intercambiar archivos rápidamente entr
 
 ![Configuración y comprobación de la carpeta compartida](img/carpetaCompartida.png)
 
+
+## BLOQUE 2: Gestión de Almacenamiento, Particionamiento y Mantenimiento
+
+### 1. Creación y Asignación de un Disco Duro Virtual Secundario
+
+Añadimos un segundo disco duro virtual a la máquina desde el selector de medios de VirtualBox.
+
+- **Nombre del archivo:** `Pratica-Tiozeio_1.vhd`.
+- **Tamaño asignado:** **10,00 GB**.
+- **Formato de archivo:** **VHD (Virtual Hard Disk)** con reserva dinámica.
+- **Verificación:** Confirmamos en el administrador de discos que la unidad principal `Pratica-Tiozeio.vdi` de 50 GB se mantiene conectada (*Attached*) y que la nueva unidad de 10 GB quedó lista para utilizarse.
+
+![Creación del disco duro virtual VHD](img/discoVirtual.png)
+
+![Selector de disco duro con la nueva unidad asignada](img/selectorDisco.png)
+
 ---
