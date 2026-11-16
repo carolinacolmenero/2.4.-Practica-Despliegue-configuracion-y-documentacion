@@ -107,3 +107,16 @@ Añadimos un segundo disco duro virtual a la máquina desde el selector de medio
 ![Selector de disco duro con la nueva unidad asignada](img/selectorDisco.png)
 
 ---
+
+### 2. Particionamiento GPT y Creación de Particiones
+
+Abrimos la herramienta **GParted** en Ubuntu para inicializar y particionar el nuevo disco, reconocido como `/dev/sdb` (10,00 GiB). Creamos dos particiones primarias en la unidad:
+
+1. **Partición `/dev/sdb1`:** Volumen de **5.12 GiB** formateado con el sistema de archivos **ext4**.
+2. **Partición `/dev/sdb2`:** Volumen de **4.88 GiB** formateado en **fat32**.
+
+![Particionamiento inicial con GParted](img/particionamiento.png)
+
+![Formateo de partición en fat32 y ext4](img/formateoParticion.png)
+
+---
